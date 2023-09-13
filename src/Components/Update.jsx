@@ -65,11 +65,23 @@ console.log("empolyeeDetails",employeeDetail)
     formik.setFieldValue('Description', value);
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values) => {
     try {
-      console.log("this are values",values)
+      let storage = {
+        FirstName: values.values.FirstName,
+        LastName: values.values.LastName,
+        DOB: values.values.DOB,
+        Study: values.values.Study,
+        StartDate: values.values.StartDate,
+        EndDate: values.values.EndDate,
+        CurrentSalary: values.values.CurrentSalary,
+        Description: values.values.Description
+        
+      }
+  
+      console.log("this are values",storage)
       // Send the form data to your backend
-      const response = await axios.put(`https://sweede.app/DeliveryBoy/update-Employee/${employee.id}`, values);
+      const response = await axios.post(`https://sweede.app/DeliveryBoy/update-Employee/${employee.id}`,storage);
       navigate("/employee")
       // Check if the request was successful
       if (response.data.success) {
