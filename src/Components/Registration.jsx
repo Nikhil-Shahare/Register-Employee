@@ -57,11 +57,12 @@ const Registration = () => {
     try {
       // Send the form data to your backend
       const response = await axios.post('https://sweede.app/DeliveryBoy/Add-Employee/', storage);
-
+      
+      resetForm();
+      
       // Check if the request was successful
       if (response.data.success) {
         // Reset the form after successful submission
-        resetForm({ values: initialValues });
         console.log('Data sent successfully:', response.data);
       } else {
         console.error('Failed to send data:', response.data);
